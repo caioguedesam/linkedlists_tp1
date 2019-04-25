@@ -32,7 +32,7 @@ int Lista::GetVagas()
 void Lista::InsereNode(Node *n)
 {
 	
-	Node *aluno = new Node(n->GetNome(), n->GetNota(), n->GetCurso1(), n->GetCurso2());
+	Node *aluno = n;
 
 	// Inserir primeiro elemento
 	if(_head->GetProx() == nullptr)
@@ -74,7 +74,7 @@ void Lista::ImprimeLista()
 	std::cout << "--------------------\n";
 	while(aux != nullptr)
 	{
-		std::cout << "Aluno: " << aux->GetNome() << "  Nota: " << aux->GetNota() << "\n";
+		std::cout << "Aluno: " << aux->GetNome() << "  Nota: " << aux->GetNota() << " Aprovado:" << aux->Status() << "\n";
 		aux = aux->GetProx();
 	}
 	std::cout << "--------------------\n";
@@ -101,4 +101,17 @@ void Lista::SetNome(std::string nome_curso)
 void Lista::SetVagas(int vagas)
 {
 	_vagas = vagas;
+}
+
+void Lista::Resultado()
+{
+	int i;
+	Node *aux = _head->GetProx();
+	for(i = 0; i < _vagas || aux == nullptr; i++)
+	{
+		aux->SetStatus(true);
+		aux = aux->GetProx();
+	}
+
+	this->ImprimeLista();
 }

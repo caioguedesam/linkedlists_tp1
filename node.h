@@ -9,6 +9,7 @@ private:
 	std::string _nome_aluno;
 	float _nota;
 	int _curso1, _curso2;
+	bool _aprovado;
 	Node *_prox;
 public:
 	Node();
@@ -16,12 +17,14 @@ public:
 	~Node();
 
 	void SetProx(Node *prox);
+	void SetStatus(bool aprovado);
 	
 	std::string GetNome();
 	float GetNota();
 	int GetCurso1();
 	int GetCurso2();
 	Node *GetProx();
+	bool Status();
 
 };
 

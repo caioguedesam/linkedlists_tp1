@@ -26,6 +26,8 @@ public:
 	void InsereNode(Node *n);
 	void ImprimeLista();
 
+	void Resultado();
+
 };
 
 #endif

@@ -6,6 +6,7 @@ Node::Node()
 	_nota = -1;
 	_curso1 = -1;
 	_curso2 = -1;
+	_aprovado = false;
 	_prox = nullptr;
 }
 Node::Node(std::string nome_aluno, float nota, int curso1, int curso2)
@@ -14,6 +15,7 @@ Node::Node(std::string nome_aluno, float nota, int curso1, int curso2)
 	_nota = nota;
 	_curso1 = curso1;
 	_curso2 = curso2;
+	_aprovado = false;
 	_prox = nullptr;
 }
 
@@ -47,4 +49,12 @@ int Node::GetCurso2()
 Node* Node::GetProx()
 {
 	return _prox;
+}
+bool Node::Status()
+{
+	return _aprovado;
+}
+void Node::SetStatus(bool aprovado)
+{
+	_aprovado = aprovado;
 }
