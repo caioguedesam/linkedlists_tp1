@@ -17,6 +17,11 @@ public:
 	std::string GetNome();
 	int GetVagas();
 	int GetSize();
+	Node *GetHead();
+
+	void SetNome(std::string nome_curso);
+	void SetVagas(int vagas);
+	void SetHead(Node *head);
 
 	void InsereNode(Node *n);
 	void ImprimeLista();

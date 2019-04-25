@@ -31,37 +31,39 @@ int Lista::GetVagas()
 
 void Lista::InsereNode(Node *n)
 {
-	if(this->_head->GetProx() == nullptr)
+	
+	Node *aluno = new Node(n->GetNome(), n->GetNota(), n->GetCurso1(), n->GetCurso2());
+
+	// Inserir primeiro elemento
+	if(_head->GetProx() == nullptr)
 	{
-		this->_head->SetProx(n);
-		_total++;
+		_head->SetProx(aluno);
 	}
+	// Inserir além do primeiro elemento
 	else
 	{
-		Node *aux = new Node();
-		Node *aux_prox = new Node();
-		aux = this->_head;
-		aux_prox = aux->GetProx();
+		Node *aux = this->_head;
+		Node *aux_prox = aux->GetProx();
 
 		while(aux_prox != nullptr)
 		{
-			if(aux_prox->GetNota() < n->GetNota())
+			// Inserindo nota maior do que uma que já existe
+			if(aux_prox->GetNota() < aluno->GetNota())
 			{
-				aux->SetProx(n);
-				n->SetProx(aux_prox);
-				_total++;
+				aux->SetProx(aluno);
+				aluno->SetProx(aux_prox);
 				break;
 			}
-			
 			aux = aux_prox;
 			aux_prox = aux_prox->GetProx();
 
+			// Inserindo menor nota do curso
 			if(aux_prox == nullptr)
 			{
-				aux->SetProx(n);
-				_total++;
+				aux->SetProx(aluno);
 			}
 		}
+
 	}
 }
 
@@ -81,4 +83,22 @@ void Lista::ImprimeLista()
 int Lista::GetSize()
 {
 	return _total;
+}
+
+Node* Lista::GetHead()
+{
+	return _head;
+}
+
+void Lista::SetHead(Node *head)
+{
+	_head = head;
+}
+void Lista::SetNome(std::string nome_curso)
+{
+	_nome_curso = nome_curso;
+}
+void Lista::SetVagas(int vagas)
+{
+	_vagas = vagas;
 }

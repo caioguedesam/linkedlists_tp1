@@ -1,16 +1,14 @@
-3 5
+2 5
 Mineracao de Gelo
 2
 Engenharia Metalurgica
 1
-Ciência das Geleiras
-3
 Olavo das Neves
 496.00 0 1
 Gothi Gelatto
-190.10 2 1
+190.10 0 1
 Gerda Ferreira
-556.79 1 2
+556.79 1 0
 Hans Westergaard
 418.09 1 0
 Kristoff Bjorgman
