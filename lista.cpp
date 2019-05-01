@@ -6,6 +6,7 @@ Lista::Lista()
 	_nome_curso = "";
 	_vagas = -1;
 	_total = 0;
+	_corte = 0;
 }
 Lista::Lista(std::string nome_curso, int vagas)
 {
@@ -13,6 +14,7 @@ Lista::Lista(std::string nome_curso, int vagas)
 	_nome_curso = nome_curso;
 	_vagas = vagas;
 	_total = 0;
+	_corte = 0;
 }
 Lista::~Lista()
 {
@@ -31,17 +33,18 @@ int Lista::GetVagas()
 
 void Lista::InsereNode(Node *n)
 {
-	
-	Node *aluno = n;
-
+	Node *aluno = new Node(n->GetNome(), n->GetNota(), n->GetCurso1(), n->GetCurso2());
 	// Inserir primeiro elemento
 	if(_head->GetProx() == nullptr)
 	{
 		_head->SetProx(aluno);
+		aluno->SetProx(nullptr);
+		_total++;
 	}
 	// Inserir além do primeiro elemento
 	else
 	{
+		
 		Node *aux = this->_head;
 		Node *aux_prox = aux->GetProx();
 
@@ -52,6 +55,7 @@ void Lista::InsereNode(Node *n)
 			{
 				aux->SetProx(aluno);
 				aluno->SetProx(aux_prox);
+				_total++;
 				break;
 			}
 			aux = aux_prox;
@@ -61,28 +65,61 @@ void Lista::InsereNode(Node *n)
 			if(aux_prox == nullptr)
 			{
 				aux->SetProx(aluno);
+				aluno->SetProx(nullptr);
+				_total++;
 			}
 		}
 
+	}
+}
+//Função para inserir nós sem importar a ordem da nota
+void Lista::InsereNodeDesord(Node *n)
+{
+	Node *aluno = new Node(n->GetNome(), n->GetNota(), n->GetCurso1(), n->GetCurso2());
+
+	// Inserir primeiro elemento
+	if(_head->GetProx() == nullptr)
+	{
+		_head->SetProx(aluno);
+		aluno->SetProx(nullptr);
+		_total++;
+	}
+	else
+	{
+		Node *aux = this->_head;
+		Node *aux_prox = aux->GetProx();
+
+		while(aux_prox != nullptr)
+		{
+			aux = aux_prox;
+			aux_prox = aux_prox->GetProx();
+		}
+
+		aux->SetProx(aluno);
+		aluno->SetProx(nullptr);
+		_total++;
 	}
 }
 
 void Lista::ImprimeLista()
 {
 	Node *aux = _head->GetProx();
-	std::cout << "Curso: " << _nome_curso << " | Vagas: " << _vagas << " | Inscritos: "<< _total << "\n";
-	std::cout << "--------------------\n";
+	/*std::cout << "Curso: " << _nome_curso << " | Vagas: " << _vagas << " | Inscritos: "<< _total << "\n";
+	std::cout << "--------------------\n";*/
 	while(aux != nullptr)
 	{
-		std::cout << "Aluno: " << aux->GetNome() << "  Nota: " << aux->GetNota() << " Aprovado:" << aux->Status() << "\n";
+		std::cout <<  aux->GetNome() << " " << aux->GetNota() << std::endl;
 		aux = aux->GetProx();
 	}
-	std::cout << "--------------------\n";
 }
 
 int Lista::GetSize()
 {
 	return _total;
+}
+int Lista::GetCorte()
+{
+	return _corte;
 }
 
 Node* Lista::GetHead()
@@ -102,16 +139,7 @@ void Lista::SetVagas(int vagas)
 {
 	_vagas = vagas;
 }
-
-void Lista::Resultado()
+void Lista::SetCorte(int corte)
 {
-	int i;
-	Node *aux = _head->GetProx();
-	for(i = 0; i < _vagas || aux == nullptr; i++)
-	{
-		aux->SetStatus(true);
-		aux = aux->GetProx();
-	}
-
-	this->ImprimeLista();
+	_corte = corte;
 }
