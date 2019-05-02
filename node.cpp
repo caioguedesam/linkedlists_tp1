@@ -19,11 +19,11 @@ Node::Node(std::string nome_aluno, float nota, int curso1, int curso2)
 	_prox = nullptr;
 }
 
-Node::~Node()
+/*Node::~Node()
 {
 	if(_prox != nullptr)
 		delete _prox;
-}
+}*/
 
 void Node::SetProx(Node *prox)
 {

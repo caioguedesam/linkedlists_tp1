@@ -13,7 +13,7 @@ private:
 public:
 	Lista();
 	Lista(std::string nome_curso, int vagas);
-	~Lista();
+	//~Lista();
 
 	std::string GetNome();
 	int GetVagas();

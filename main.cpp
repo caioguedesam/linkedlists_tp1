@@ -5,11 +5,10 @@ Lista** GetListasClassificados(int num_cursos);
 void Resultados(Lista alunos, Lista *cursos_arr, Lista *espera_arr, int num_cursos);
 
 
-
 int main()
 {
 	// Entrando numero de cursos e de alunos
-	int num_cursos, num_alunos;
+	int num_cursos, num_alunos, i;
 	std::cin >> num_cursos >> num_alunos;
 
 	// Armazenando as listas de classificados e de espera em arrays
@@ -20,8 +19,8 @@ int main()
 	// Armazenando todos os alunos em ordem de nota
 	Lista alunos = GetAlunos(num_alunos);
 
-	Resultados(alunos, cursos_arr, espera_arr, num_cursos);	
-
+	Resultados(alunos, cursos_arr, espera_arr, num_cursos);
+	
 	return 0;
 }
 

@@ -14,7 +14,7 @@ private:
 public:
 	Node();
 	Node(std::string nome_aluno, float nota, int curso1, int curso2);
-	~Node();
+	//~Node();
 
 	void SetProx(Node *prox);
 	void SetStatus(bool aprovado);

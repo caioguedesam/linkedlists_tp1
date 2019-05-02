@@ -16,11 +16,12 @@ Lista::Lista(std::string nome_curso, int vagas)
 	_total = 0;
 	_corte = 0;
 }
-Lista::~Lista()
+/*Lista::~Lista()
 {
+
 	if(_head != nullptr)
 		delete _head;
-}
+}*/
 
 std::string Lista::GetNome()
 {
