@@ -10,6 +10,7 @@ private:
 	int _vagas;
 	int _total;
 	int _corte;
+	int _id;
 public:
 	Lista();
 	Lista(std::string nome_curso, int vagas);
@@ -20,14 +21,15 @@ public:
 	int GetSize();
 	int GetCorte();
 	Node *GetHead();
+	int GetId();
 
 	void SetNome(std::string nome_curso);
 	void SetVagas(int vagas);
 	void SetCorte(int corte);
 	void SetHead(Node *head);
+	void SetId(int id);
 
 	void InsereNode(Node *n);
-	void InsereNodeDesord(Node *n);
 	void ImprimeLista();
 
 	void Resultado();

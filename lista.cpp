@@ -2,11 +2,12 @@
 
 Lista::Lista()
 {
-	_head = nullptr;
+	_head = new Node();
 	_nome_curso = "";
 	_vagas = -1;
 	_total = 0;
 	_corte = 0;
+	_id = -1;
 }
 Lista::Lista(std::string nome_curso, int vagas)
 {
@@ -15,23 +16,16 @@ Lista::Lista(std::string nome_curso, int vagas)
 	_vagas = vagas;
 	_total = 0;
 	_corte = 0;
+	_id = -1;
 }
 /*Lista::~Lista()
 {
-
 	if(_head != nullptr)
 		delete _head;
+	std::cout << "Deleted lista " << this->GetNome() << std::endl;
 }*/
 
-std::string Lista::GetNome()
-{
-	return _nome_curso;
-}
-int Lista::GetVagas()
-{
-	return _vagas;
-}
-
+// Função que insere o nó na lista dada - O(n)
 void Lista::InsereNode(Node *n)
 {
 	Node *aluno = new Node(n->GetNome(), n->GetNota(), n->GetCurso1(), n->GetCurso2());
@@ -59,10 +53,21 @@ void Lista::InsereNode(Node *n)
 				_total++;
 				break;
 			}
+			// Caso de empate
+			else if(aux_prox->GetNota() == aluno->GetNota())
+			{
+				if(aluno->GetCurso1() == this->GetId() && aux_prox->GetCurso1() != this->GetId())
+				{
+					aux->SetProx(aluno);
+					aluno->SetProx(aux_prox);
+					_total++;
+					break;
+				}
+			}
 			aux = aux_prox;
 			aux_prox = aux_prox->GetProx();
 
-			// Inserindo menor nota do curso
+			// Inserindo menor nota do curso no final
 			if(aux_prox == nullptr)
 			{
 				aux->SetProx(aluno);
@@ -73,40 +78,11 @@ void Lista::InsereNode(Node *n)
 
 	}
 }
-//Função para inserir nós sem importar a ordem da nota
-void Lista::InsereNodeDesord(Node *n)
-{
-	Node *aluno = new Node(n->GetNome(), n->GetNota(), n->GetCurso1(), n->GetCurso2());
 
-	// Inserir primeiro elemento
-	if(_head->GetProx() == nullptr)
-	{
-		_head->SetProx(aluno);
-		aluno->SetProx(nullptr);
-		_total++;
-	}
-	else
-	{
-		Node *aux = this->_head;
-		Node *aux_prox = aux->GetProx();
-
-		while(aux_prox != nullptr)
-		{
-			aux = aux_prox;
-			aux_prox = aux_prox->GetProx();
-		}
-
-		aux->SetProx(aluno);
-		aluno->SetProx(nullptr);
-		_total++;
-	}
-}
-
+// Função que imprime os nós de cada lista - O(n)
 void Lista::ImprimeLista()
 {
 	Node *aux = _head->GetProx();
-	/*std::cout << "Curso: " << _nome_curso << " | Vagas: " << _vagas << " | Inscritos: "<< _total << "\n";
-	std::cout << "--------------------\n";*/
 	while(aux != nullptr)
 	{
 		std::cout <<  aux->GetNome() << " " << aux->GetNota() << std::endl;
@@ -114,33 +90,17 @@ void Lista::ImprimeLista()
 	}
 }
 
-int Lista::GetSize()
-{
-	return _total;
-}
-int Lista::GetCorte()
-{
-	return _corte;
-}
+// Funções para definir valores de atributos privados - O(1)
+std::string Lista::GetNome() {return _nome_curso;}
+int Lista::GetVagas() {return _vagas;}
+int Lista::GetSize() {return _total;}
+int Lista::GetCorte() {return _corte;}
+Node* Lista::GetHead() {return _head;}
+int Lista::GetId() {return _id;}
 
-Node* Lista::GetHead()
-{
-	return _head;
-}
-
-void Lista::SetHead(Node *head)
-{
-	_head = head;
-}
-void Lista::SetNome(std::string nome_curso)
-{
-	_nome_curso = nome_curso;
-}
-void Lista::SetVagas(int vagas)
-{
-	_vagas = vagas;
-}
-void Lista::SetCorte(int corte)
-{
-	_corte = corte;
-}
+// Funções para retornar valores de atributos privados - O(1)
+void Lista::SetHead(Node *head) {_head = head;}
+void Lista::SetNome(std::string nome_curso) {_nome_curso = nome_curso;}
+void Lista::SetVagas(int vagas) {_vagas = vagas;}
+void Lista::SetCorte(int corte) {_corte = corte;}
+void Lista::SetId(int id) {_id = id;}

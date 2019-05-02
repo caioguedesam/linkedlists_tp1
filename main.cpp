@@ -1,7 +1,14 @@
 #include "lista.h"
 
+// Funções utilizadas no main (definidas posteriormente):
+// Função que cria e retorna lista com todos os alunos inscritos
 Lista GetAlunos(int num_alunos);
+
+// Função que cria e retorna listas de classificados e
+// de espera para todos os cursos
 Lista** GetListasClassificados(int num_cursos);
+
+// Função que calcula e imprime os resultados do "SISU"
 void Resultados(Lista alunos, Lista *cursos_arr, Lista *espera_arr, int num_cursos);
 
 
@@ -13,7 +20,9 @@ int main()
 
 	// Armazenando as listas de classificados e de espera em arrays
 	Lista **cursos_e_esperas = GetListasClassificados(num_cursos);
+	// Todas as listas de classificados:
 	Lista *cursos_arr = cursos_e_esperas[0];
+	// Todas as listas de espera:
 	Lista *espera_arr = cursos_e_esperas[1];
 
 	// Armazenando todos os alunos em ordem de nota
@@ -28,7 +37,6 @@ Lista GetAlunos(int num_alunos)
 {
 
 	Lista alunos = Lista();
-	alunos.SetHead(new Node());
 	int i;
 	for(i = 0; i < num_alunos; i++)
 	{
@@ -68,10 +76,12 @@ Lista** GetListasClassificados(int num_cursos)
 		cursos_arr[i].SetHead(new Node());
 		cursos_arr[i].SetNome(nome_curso);
 		cursos_arr[i].SetVagas(vagas);
+		cursos_arr[i].SetId(i);
 
 		espera_arr[i].SetHead(new Node());
 		espera_arr[i].SetNome(nome_curso);
 		espera_arr[i].SetVagas(vagas);
+		espera_arr[i].SetId(i);
 		
 	}
 
@@ -101,7 +111,7 @@ void Resultados(Lista alunos, Lista *cursos_arr, Lista *espera_arr, int num_curs
 		}
 		else
 		{
-			espera_arr[aux->GetCurso1()].InsereNodeDesord(aux);
+			espera_arr[aux->GetCurso1()].InsereNode(aux);
 			if(cursos_arr[aux->GetCurso2()].GetSize() < cursos_arr[aux->GetCurso2()].GetVagas())
 			{
 				cursos_arr[aux->GetCurso2()].InsereNode(aux);
@@ -114,7 +124,7 @@ void Resultados(Lista alunos, Lista *cursos_arr, Lista *espera_arr, int num_curs
 			}
 			else
 			{
-				espera_arr[aux->GetCurso2()].InsereNodeDesord(aux);
+				espera_arr[aux->GetCurso2()].InsereNode(aux);
 			}
 		}
 
