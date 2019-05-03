@@ -1,4 +1,5 @@
 #include "lista.h"
+#include <iomanip>
 
 // Funções utilizadas no main (definidas posteriormente):
 // Função que cria e retorna lista com todos os alunos inscritos
@@ -15,7 +16,7 @@ void Resultados(Lista alunos, Lista *cursos_arr, Lista *espera_arr, int num_curs
 int main()
 {
 	// Entrando numero de cursos e de alunos
-	int num_cursos, num_alunos, i;
+	int num_cursos, num_alunos;
 	std::cin >> num_cursos >> num_alunos;
 
 	// Armazenando as listas de classificados e de espera em arrays
@@ -134,6 +135,9 @@ void Resultados(Lista alunos, Lista *cursos_arr, Lista *espera_arr, int num_curs
 
 	// Imprimindo todos os cursos com lista de classificados e lista de espera:
 	int i;
+	// Configurações de saída de decimais
+	std::cout << std::fixed;
+	std::cout << std::setprecision(2);
 	for(i = 0; i < num_cursos; i++)
 	{
 		std::cout << cursos_arr[i].GetNome() << " " << cursos_arr[i].GetCorte() << std::endl;

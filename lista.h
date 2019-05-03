@@ -9,7 +9,7 @@ private:
 	std::string _nome_curso;
 	int _vagas;
 	int _total;
-	int _corte;
+	float _corte;
 	int _id;
 public:
 	Lista();
@@ -19,13 +19,13 @@ public:
 	std::string GetNome();
 	int GetVagas();
 	int GetSize();
-	int GetCorte();
+	float GetCorte();
 	Node *GetHead();
 	int GetId();
 
 	void SetNome(std::string nome_curso);
 	void SetVagas(int vagas);
-	void SetCorte(int corte);
+	void SetCorte(float corte);
 	void SetHead(Node *head);
 	void SetId(int id);
 

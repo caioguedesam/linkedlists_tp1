@@ -94,7 +94,7 @@ void Lista::ImprimeLista()
 std::string Lista::GetNome() {return _nome_curso;}
 int Lista::GetVagas() {return _vagas;}
 int Lista::GetSize() {return _total;}
-int Lista::GetCorte() {return _corte;}
+float Lista::GetCorte() {return _corte;}
 Node* Lista::GetHead() {return _head;}
 int Lista::GetId() {return _id;}
 
@@ -102,5 +102,5 @@ int Lista::GetId() {return _id;}
 void Lista::SetHead(Node *head) {_head = head;}
 void Lista::SetNome(std::string nome_curso) {_nome_curso = nome_curso;}
 void Lista::SetVagas(int vagas) {_vagas = vagas;}
-void Lista::SetCorte(int corte) {_corte = corte;}
+void Lista::SetCorte(float corte) {_corte = corte;}
 void Lista::SetId(int id) {_id = id;}
